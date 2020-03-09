@@ -1,4 +1,4 @@
-package com.code.exercise.transactions
+package com.code.exercise.transactions.util
 
 object ColumnNames {
 
@@ -12,4 +12,7 @@ object ColumnNames {
   val CHLD_TRAN_D  = "child_transaction_date"
   val CHLD_TRAN_A  = "child_transaction_amount"
 
+  val CUST_ID       = "customer_id"
+  val CUST_NAME     = "customer_name"
+  val NUM_REFD_TRAN = "number_of_refund_transactions"
 }

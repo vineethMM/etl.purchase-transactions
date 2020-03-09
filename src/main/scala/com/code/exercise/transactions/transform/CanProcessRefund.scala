@@ -1,10 +1,8 @@
-package com.code.exercise.transactions
+package com.code.exercise.transactions.transform
 
+import com.code.exercise.transactions.util.ColumnNames._
+import org.apache.spark.sql.functions.{col, count, month}
 import org.apache.spark.sql.{DataFrame, SparkSession}
-import org.apache.spark.sql.functions._
-
-import ColumnNames._
-
 
 trait CanProcessRefund {
 
@@ -17,9 +15,7 @@ trait CanProcessRefund {
    * 4. transaction_amount: Decimal(16, 2) -  Transaction amount
    * 5. transaction_date: Timestamp    -  Timestamp at which the transaction occurred
    */
-  def getRefundTransactions(allTransactions: DataFrame)(ss: SparkSession): DataFrame = {
-    //import ss.implicits._
-
+  def getRefundTransactions(allTransactions: DataFrame): DataFrame = {
     val cachedTransactions =  allTransactions.cache()
 
     // transaction whose parent_transaction_id is null is considered as parent transaction
@@ -46,5 +42,13 @@ trait CanProcessRefund {
         .drop(PRNT_TRAN_ID) // not required as same information is there in `transaction_id`
         .filter(col("child_transaction_amount").isNotNull) // Ignore transactions which has void child transactions
         .filter(month(col(TRAN_D)) =!= month(col(CHLD_TRAN_D))) // Ignore refund transactions happened on same month
+  }
+
+
+  def refundTransactionsPerCustomer(refundTransactions: DataFrame, acctWithCustomer: DataFrame): DataFrame = {
+    refundTransactions
+      .join(acctWithCustomer.select(col(CUST_ID), col(CUST_NAME), col(ACCT_N)), col(ACCT_N) === col(ACCT_N))
+      .groupBy(col(CUST_ID))
+      .agg(count(CUST_ID).alias(NUM_REFD_TRAN))
   }
 }
