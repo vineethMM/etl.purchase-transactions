@@ -1,6 +1,6 @@
 val projectName = "etl-purchase-transactions"
 
-val sparkVersion = "2.4.5" // Stable latest version of Spark
+val sparkVersion = "3.0.0-preview2"
 
 val dependencies = Seq(
   // main
@@ -13,4 +13,4 @@ val dependencies = Seq(
 
 lazy val main = Project(projectName, base = file("."))
   .settings(libraryDependencies ++= dependencies)
-  .settings(scalaVersion := "2.11.8") // Scala version compatible with Spark 2.4.5
+  .settings(scalaVersion := "2.12.10")
