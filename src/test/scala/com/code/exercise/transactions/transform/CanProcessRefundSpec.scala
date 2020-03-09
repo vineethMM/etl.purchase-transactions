@@ -23,6 +23,4 @@ class CanProcessRefundSpec  extends SparkSpec with CanProcessRefund {
 
    actualOutput should equal( expectedOutput)
   }
-
-
 }

@@ -1,6 +1,6 @@
 package com.code.exercise.transactions.util
 
-object ColumnNames {
+object Constants {
 
   val TRAN_ID      = "transaction_id"
   val PRNT_TRAN_ID = "parent_transaction_id"
@@ -15,4 +15,8 @@ object ColumnNames {
   val CUST_ID       = "customer_id"
   val CUST_NAME     = "customer_name"
   val NUM_REFD_TRAN = "number_of_refund_transactions"
+
+  val TRAN_DB        = "domain"
+  val TRAN_TABL      = "purchase_transactions"
+  val CUST_ACCT_TABL = "customer_account_table"
 }
