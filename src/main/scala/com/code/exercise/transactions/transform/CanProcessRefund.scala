@@ -1,19 +1,20 @@
 package com.code.exercise.transactions.transform
 
-import com.code.exercise.transactions.util.Constants._
 import org.apache.spark.sql.functions.{col, count, month}
 import org.apache.spark.sql.DataFrame
 
-trait CanProcessRefund {
+import com.code.exercise.transactions.util.Constants._
 
+trait CanProcessRefund {
   /**
    * @param allTransactions
    *                       The input data frame should have following columns. (No compile time type safety as we are using DataFrame API)
    *                       1. transaction_id: String         -  Unique identifier for a transaction
    *                       2. parent_transaction_id: String  -  Reference the parent transaction
-   *                       3. account_number: String         -  Debit account number
-   *                       4. transaction_amount: Decimal(16, 2) -  Transaction amount
-   *                       5. transaction_date: Timestamp    -  Timestamp at which the transaction occurred
+   *                       3. transaction_type               -  type of transaction (purchase, refund or void)
+   *                       4. account_number: String         -  Debit account number
+   *                       5. transaction_amount: Decimal(16, 2) -  Transaction amount
+   *                       6. transaction_date: Timestamp    -  Timestamp at which the transaction occurred
    *
    * @return Transactions that has refunds along with refund information
    */
