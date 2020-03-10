@@ -18,6 +18,7 @@ This solution uses the Hadoop eco-system with following following components
 2. YARN as resource manager
 3. Spark as processing framework
 4. Hive as the data access store
+5. Parquet as file format
 
 #### Assumptions and considerations
 1. External system send purchase transactions as text files to edge node. Secure file transfer protocols can be used here.
@@ -70,4 +71,17 @@ This solution uses the Hadoop eco-system with following following components
 
 6. Execute query 
 
-   "select * from customer_refund_trans"     
+   "select * from customer_refund_trans"
+   
+ 
+ ## Alternate tech stacks 
+ 1. Another solution would be making use of AWS cloud services. We could store data in Amazone S3 file system. Making use of
+ EMR (Elastic map-reduce) service to run spark jobs on top of it. One catch here is data-locality. EMR does not guarantee
+ data local processing. However evaluations show performance is not that degrade. 
+ 
+ 2. Instead of using EMR, we could run spark on EKS (Elastic Kubernetes Service). In fully containerised mode, data can still
+ sit on S3
+ 
+ 3. Another stack would be using GCP Dataflow and Apache Beam
+ 
+       
