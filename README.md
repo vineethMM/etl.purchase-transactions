@@ -14,7 +14,7 @@ Implement the derivation of the total refunds monthly feature
 ## Solution description
 This solution uses the Hadoop eco-system with following following components
 
-1. HDFS as File system 
+1. HDFS as file system 
 2. YARN as resource manager
 3. Spark as processing framework
 4. Hive as the data access store
@@ -30,10 +30,15 @@ This solution uses the Hadoop eco-system with following following components
 1. Central meta data capturing tools like Alation.
 2. Job orchestration and scheduling tools like Apache Airflow.
 3. Reporting tools like Tableau.
+4. Access control tools like Apache Sentry
 
 ### Tech stack
 
 ![Tech stack](src/main/docs/tech_stack.png)
+
+### Data architecture
+
+![Data arch](src/main/docs/data_architecture.png)
 
 #### Trial run of this application
 
